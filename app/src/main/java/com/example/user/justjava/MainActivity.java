@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-//        priceTextView = (TextView) findViewById(R.id.price_text_view);
+        //priceTextView = (TextView) findViewById(R.id.price_text_view);
         whippedCreamCheckBox = (CheckBox) findViewById(R.id.checkbox_whipped_cream);
         chocholateCheckBox = (CheckBox) findViewById(R.id.checkbox_chocolate);
         nameEditText = (EditText) findViewById(R.id.edit_text_name);

@@ -12,18 +12,16 @@
 
         <EditText
             android:id="@+id/edit_text_name"
+            style="@style/DefaultSizeStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Type your name"
-            android:layout_margin="8dp"
-            android:textSize="16sp"/>
+            android:text="Type your name" />
 
         <TextView
+            style="@style/DefaultSizeStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="QUANTITY"
-            android:textSize="16sp" />
+            android:text="QUANTITY" />
 
         <CheckBox
             android:id="@+id/checkbox_whipped_cream"
@@ -44,11 +42,10 @@
             android:textSize="16sp" />
 
         <TextView
+            style="@style/DefaultSizeStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="QUANTITY"
-            android:textSize="16sp" />
+            android:text="QUANTITY" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,37 +54,33 @@
             android:orientation="horizontal">
 
             <Button
+                style="@style/DefaultSizeStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:onClick="increment"
-                android:text="+"
-                android:textSize="16sp" />
+                android:text="+" />
 
             <TextView
                 android:id="@+id/quantity_text_view"
+                style="@style/DefaultSizeStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:text="0"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textColor="#000000" />
 
             <Button
+                style="@style/DefaultSizeStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:onClick="decrement"
-                android:text="-"
-                android:textSize="16sp" />
+                android:text="-" />
         </LinearLayout>
 
         <Button
+            style="@style/DefaultSizeStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             android:onClick="submitSummary"
-            android:text="Submit summary"
-            android:textSize="16sp" />
+            android:text="Submit summary" />
     </LinearLayout>
 </ScrollView>
