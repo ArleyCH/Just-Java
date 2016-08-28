@@ -63,14 +63,24 @@ public class MainActivity extends AppCompatActivity {
      */
     public void increment(View view) {
         int newIncrement = Integer.parseInt(quantityTextView.getText().toString());
-        display(newIncrement+1);
+        if(newIncrement==100){
+            Toast.makeText(getApplicationContext(),"We just have 100 cups!!!",Toast.LENGTH_LONG).show();
+        }else{
+            newIncrement++;
+        }
+        display(newIncrement);
     }
     /**
      * This method decreases the quantity by 1.
      */
     public void decrement(View view) {
         int newDecrement = Integer.parseInt(quantityTextView.getText().toString());
-        display(newDecrement-1);
+        if(newDecrement==0){
+            Toast.makeText(getApplicationContext(),"Please drink something :(",Toast.LENGTH_LONG).show();
+        }else{
+            newDecrement--;
+        }
+        display(newDecrement);
     }
 
     /**
