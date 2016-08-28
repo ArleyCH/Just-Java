@@ -4,7 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     CheckBox whippedCreamCheckBox;
     String chocolate;
     CheckBox chocholateCheckBox;
+    EditText nameEditText;
+    int taste;  // 1=Whipped cream 2=Chocolate
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +30,14 @@ public class MainActivity extends AppCompatActivity {
         priceTextView = (TextView) findViewById(R.id.price_text_view);
         whippedCreamCheckBox = (CheckBox) findViewById(R.id.checkbox_whipped_cream);
         chocholateCheckBox = (CheckBox) findViewById(R.id.checkbox_chocolate);
+        nameEditText = (EditText) findViewById(R.id.edit_text_name);
 
+        taste=0;
         chocolate="";
         whippedCreamString="";
+
+        chocholateCheckBox.setChecked(false);
+        whippedCreamCheckBox.setChecked(false);
 
         display(0);
         displayPrice(0,whippedCreamString,chocolate);
@@ -37,8 +47,16 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitSummary(View view) {
-        int price = Integer.parseInt(quantityTextView.getText().toString());
-        displayPrice(price*5,whippedCreamString,chocolate);
+        int coffees = Integer.parseInt(quantityTextView.getText().toString());
+        int price = 0;
+        price=taste;
+        if(taste==0){
+            Toast.makeText(getApplicationContext(),"Pick a flavor!!!!",Toast.LENGTH_LONG).show();
+        }
+        /*
+         $5 base coffee price + $1 if whipped cream or + $2 if chocolate, times the amount of coffees
+         */
+        displayPrice((5+price)*coffees,whippedCreamString,chocolate);
     }
     /**
      * This method increases the quantity by 1.
@@ -58,10 +76,13 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method evaluates the state of the Whipped cream checkbox
      */
-    public void  handleWhippedCream(View view){
+    public void  handleWhippedCream(View view){ //one dollar with cream
         boolean checked =whippedCreamCheckBox.isChecked();
         if(checked){
+            chocholateCheckBox.setChecked(false);
             whippedCreamString="\nWith whipped cream!!!!";
+            chocolate="";
+            taste=1;
         }else{
             whippedCreamString="";
         }
@@ -70,10 +91,13 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method evaluates the state of the chocolate checkbox
      */
-    public void  handleChocolate(View view){
+    public void  handleChocolate(View view){ //Two dollars with chocolate
         boolean checked =chocholateCheckBox.isChecked();
         if(checked){
+            whippedCreamCheckBox.setChecked(false);
             chocolate="\nWith chocolate!!!!";
+            whippedCreamString="";
+            taste=2;
         }else{
             chocolate="";
         }
@@ -88,10 +112,7 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given price on the screen.
      */
     private void displayPrice(int number,String cream,String choco){
-        priceTextView.setText("Name: Arley Chaves\nTotal: "+NumberFormat.getCurrencyInstance().format(number) + "\nThanks!!!!"
-                +cream+choco);
-        //if(boolCream){
-        //    //priceTextView.setText(priceTextView.getText().toString()+ "\nWith Whipped Cream!!!");
-        //}
+        String name = nameEditText.getText().toString();
+        priceTextView.setText("Name: "+name+"\nTotal: "+NumberFormat.getCurrencyInstance().format(number)+cream+choco+"\nThanks!!!!");
     }
 }
