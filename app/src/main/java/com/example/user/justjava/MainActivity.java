@@ -1,5 +1,7 @@
 package com.example.user.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +15,7 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     TextView quantityTextView;
-    TextView priceTextView;
+//    TextView priceTextView;
     String whippedCreamString;
     CheckBox whippedCreamCheckBox;
     String chocolate;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        priceTextView = (TextView) findViewById(R.id.price_text_view);
+//        priceTextView = (TextView) findViewById(R.id.price_text_view);
         whippedCreamCheckBox = (CheckBox) findViewById(R.id.checkbox_whipped_cream);
         chocholateCheckBox = (CheckBox) findViewById(R.id.checkbox_chocolate);
         nameEditText = (EditText) findViewById(R.id.edit_text_name);
@@ -123,6 +125,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayPrice(int number,String cream,String choco){
         String name = nameEditText.getText().toString();
-        priceTextView.setText("Name: "+name+"\nTotal: "+NumberFormat.getCurrencyInstance().format(number)+cream+choco+"\nThanks!!!!");
+        //priceTextView.setText("Name: "+name+"\nTotal: "+NumberFormat.getCurrencyInstance().format(number)+cream+choco+"\nThanks!!!!");
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Coffee order");
+        intent.putExtra(Intent.EXTRA_TEXT, "Name: "+name+"\nTotal: "+NumberFormat.getCurrencyInstance().format(number)+cream+choco+"\nThanks!!!!");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 }
