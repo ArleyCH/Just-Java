@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given price on the screen.
      */
     private void displayPrice(int number) {
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        priceTextView.setText("Total: "+NumberFormat.getCurrencyInstance().format(number) + "\nThanks!!!!");
+
     }
 }
